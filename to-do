@@ -1,0 +1,24 @@
+CRAZYFLIE SIM TODO LIST:
+
+HIGH-LEVEL PY-TO-GZ LAYER <<<<<<<<<
+- Study figure8.py line-for-line noting 
+- figure out how to run the same thing in gazebo by plugging figure8.py into topics with no call to nice.gui
+- Once figure8.csv works on gazebo in mapper environment, swap trajectories and observe
+
+LOWER-LEVEL TRAJECTORY GENERATION LAYER
+- Study derivative computations within figure8.csv. Do the derivatives make sense? Why or why not? How was it generated?
+- Study uav_trajectories trajectory generator code line-for-line
+- Do they use Forward Euler, Backward Euler, or the average of both? 
+- Remember that this trajectory generator takes a while - are there any faster options?
+- What trajectory generation algorithm does Aerostack use? Study it line-for-line
+
+LOWER-LEVEL TRAJECTORY TRACKING LAYER (USES CONTROLLER)
+- Keep track of time (for later computations)
+- Compute reference state variables, get actual ones from /odom (or calculated from /odom)
+- Compute errors from imported error method (from geometric controller code)
+- Pass errors into imported control method (from geometric controller code)
+- Pass (f,M) to drone
+
+DATA STORAGE LAYER
+- Per run, save waypoints, trajectory, and pose history.
+- Use booleans and respective if-statements to plot pose history, velocity, AND/OR acceleration against time
